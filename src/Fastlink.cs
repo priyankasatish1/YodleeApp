@@ -32,7 +32,7 @@ namespace SampleApiProj
             }
             catch(IOException e)
             {
-                Console.WriteLine("Unable to read from " + path);
+                Logger.Log("Unable to read from " + path);
                 throw e;
             }
                 text = text.Replace("$appID", appId);
@@ -49,7 +49,7 @@ namespace SampleApiProj
             }
             catch(IOException e)
             {
-                Console.WriteLine("Unable to write to " + outfile);
+                Logger.Log("Unable to write to " + outfile);
                 throw e;
             }           
             return outfile;

@@ -16,13 +16,14 @@ namespace SampleApiProj
             string response = Web.httpPost(cobrandApiUrl, null, clientData, null);
             if (response == null)
             {
-                Console.WriteLine("Wrong cobrand username/password");
+                Logger.Log("Wrong cobrand username/password");
                 return Status.FAILURE;
             }
             else
             {
                 var rootObject = JsonConvert.DeserializeObject<Deserializer>(response);
                 authTokens["cobSession"] = rootObject.session.cobSession;
+                Logger.Log("Cobrand session token obtained");
                 return Status.SUCCESS;
             }
         }
@@ -35,10 +36,12 @@ namespace SampleApiProj
             {
                 userCredentials["cobrandLogin"] = "sbCobphalageri";
                 userCredentials["cobrandPassword"] = "5e26696f-028d-41bd-9c0a-7ad3f6956702";
+                Logger.Log("Getting " + session + " Token for " + userCredentials["cobrandLogin"]);
             } else if(session == "user")
             {
                 userCredentials["loginName"] = "sbMemphalageri1";
                 userCredentials["password"] = "sbMemphalageri1#123";
+                Logger.Log("Getting " + session + " Token for " + userCredentials["loginName"]);
             }
             sessionObj[session] = userCredentials;
             return JsonConvert.SerializeObject(sessionObj);
@@ -54,7 +57,7 @@ namespace SampleApiProj
             string response = Web.httpPost(memberLoginApi, header, clientData, null);
             if (response == null)
             {
-                Console.WriteLine("Please verify your username/password");
+                Logger.Log("Please verify your username/password");
                 return Status.FAILURE;
 
             }
@@ -62,6 +65,7 @@ namespace SampleApiProj
             {
                 var rootObject = JsonConvert.DeserializeObject<UserDeserializer>(response);
                 authTokens["userSession"] = rootObject.user.session.userSession;
+                Logger.Log("User session token obtained");
                 return Status.SUCCESS;
             }
         }
@@ -74,9 +78,10 @@ namespace SampleApiProj
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["appIds"] = "10003600";
             string response = Web.httpGet(accessTokenApi, header, parameters);
-            if(response == null)
+            Logger.Log("Getting access token for Fastlink for appId " + parameters["appIds"]);
+            if (response == null)
             {
-                Console.WriteLine("Your session has timed out\n \r");
+                Logger.Log("Your session has timed out");
                 return Status.FAILURE;
             }
             else
@@ -84,6 +89,7 @@ namespace SampleApiProj
                 var rootObject = JsonConvert.DeserializeObject<DeserializeAccess>(response);
                 authTokens["accessToken"] = rootObject.user.accessTokens[0].value;
                 authTokens["nodeUrl"] = rootObject.user.accessTokens[0].value;
+                Logger.Log("Access token obtained");
                 return Status.SUCCESS;
             }
         }
@@ -97,15 +103,18 @@ namespace SampleApiProj
             parameters["status"] = "";
             parameters["container"] = "";
             parameters["providerAccountID"] = "";
+            Logger.Log("Obtaining Account information");
             string jsonResponse = Web.httpGet(getAccountUrl, header, parameters);
             if (jsonResponse == null)
             {
-                Console.WriteLine("Your session has timed out\n \r");
+                Logger.Log("Your session has timed out\n \r");
                 return Status.FAILURE;
             }
             else
             {
-                XmlHandler.CreateXMLOutFile(jsonResponse,"accounts.xml");
+                string fName = "accounts.json";
+                JsonFileHandler.CreateJsonOutFile(jsonResponse, fName);
+                Logger.Log("Writing account information to file " + fName);
                 return Status.SUCCESS;    
             }
         }
@@ -116,15 +125,18 @@ namespace SampleApiProj
             headers.Add("Authorization:{cobSession= " + authTokens["cobSession"] + ",userSession=" + authTokens["userSession"] + "}");
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["container"] = "bank";
+            Logger.Log("Obtaining Transactions");
             string jsonResponse = Web.httpGet(getAccountUrl, headers, parameters);
             if (jsonResponse == null)
             {
-                Console.WriteLine("Your session has timed out\n \r");
+                Logger.Log("Your session has timed out\n \r");
                 return Status.FAILURE;
             }
             else
             {
-                XmlHandler.CreateXMLOutFile(jsonResponse,"transactions.xml");
+                string fName = "transactions.json";
+                JsonFileHandler.CreateJsonOutFile(jsonResponse, fName);
+                Logger.Log("Writing account transaction information to file " + fName);
                 return Status.SUCCESS;
             }
         }

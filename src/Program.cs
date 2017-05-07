@@ -12,38 +12,28 @@ namespace SampleApiProj
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Starting Sample Api App");
+            Logger.Log("Starting Sample Api App");
                         
+            // Fetch Cobrand token
             Enum cobrandStatus = Authentication.GetCobrandSessionToken();
-
             if (cobrandStatus.Equals(Status.SUCCESS))
             {
                 Enum memberStatus = Authentication.GetUserSessionToken();
                 if (memberStatus.Equals(Status.FAILURE))
                 {
-                    Console.WriteLine("Authentication Failed... Check User Credentials.");
+                    Logger.Log("Authentication Failed... Check User Credentials.");
                     return;
                 }
             }
             else
             {
-                Console.WriteLine("Authentication Failed... Check cobrandLogin Credentials.");
+                Logger.Log("Authentication Failed... Check cobrandLogin Credentials.");
                 return;
             }
 
-
-            Enum userAccountStatus = Authentication.getAccounts();
-            if(userAccountStatus.Equals(Status.FAILURE))
-            {
-                Console.WriteLine("Unable to get account info... Authenticate and try again.");
-                return;
-            }
-
-
-            Enum userTransactionsStatus = Authentication.getTransactions();
-
+            // Fetch User Token and open Fastlink
             Enum accessToken = Authentication.getAccessToken();
-            if(accessToken.Equals(Status.SUCCESS))
+            if (accessToken.Equals(Status.SUCCESS))
             {
                 Fastlink fs = new Fastlink();
                 string fetchFilePath = fs.GetFilePath("fastlink.html");
@@ -52,9 +42,26 @@ namespace SampleApiProj
             }
             else
             {
-                Console.WriteLine("Unable to authenticate for the given App Id, try again.");
+                Logger.Log("Unable to authenticate for the given App Id, try again.");
                 return;
             }
+
+            // Wait for user input for 2 minutes
+            Logger.Log("Waiting for user input on FastLink");
+            System.Threading.Thread.Sleep(20000);
+
+            // Get Account info
+            Enum userAccountStatus = Authentication.getAccounts();
+            if(userAccountStatus.Equals(Status.FAILURE))
+            {
+                Logger.Log("Unable to get account info... Authenticate and try again.");
+                return;
+            }
+
+            // Get Transaction info
+            Enum userTransactionsStatus = Authentication.getTransactions();
+
+
         }
     }
 }

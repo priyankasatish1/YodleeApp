@@ -60,7 +60,7 @@ namespace SampleApiProj
             }
             catch (WebException e)
             {
-                Console.WriteLine("HTTP Post Failed for " + apiurl);
+                Logger.Log("HTTP Post Failed for " + apiurl);
                 return null;
             }
         }
@@ -104,7 +104,7 @@ namespace SampleApiProj
             }
             catch (WebException e)
             {
-                Console.WriteLine("HTTP Get Failed for " + apiurl);
+                Logger.Log("HTTP Get Failed for " + apiurl);
                 return null;
             }
             return resCode.ToString();
