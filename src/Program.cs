@@ -48,7 +48,7 @@ namespace SampleApiProj
 
             // Wait for user input for 2 minutes
             Logger.Log("Waiting for user input on FastLink");
-            System.Threading.Thread.Sleep(20000);
+            System.Threading.Thread.Sleep(90000);
 
             // Get Account info
             Enum userAccountStatus = Authentication.getAccounts();

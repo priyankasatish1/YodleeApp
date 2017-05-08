@@ -39,8 +39,8 @@ namespace SampleApiProj
                 Logger.Log("Getting " + session + " Token for " + userCredentials["cobrandLogin"]);
             } else if(session == "user")
             {
-                userCredentials["loginName"] = "sbMemphalageri1";
-                userCredentials["password"] = "sbMemphalageri1#123";
+                userCredentials["loginName"] = "sbMemphalageri2";
+                userCredentials["password"] = "sbMemphalageri2#123";
                 Logger.Log("Getting " + session + " Token for " + userCredentials["loginName"]);
             }
             sessionObj[session] = userCredentials;
@@ -120,13 +120,14 @@ namespace SampleApiProj
         }
         public static Enum getTransactions()
         {
-            string getAccountUrl = "https://developer.api.yodlee.com:443/ysl/restserver/v1/accounts";
+            string getTransactionsUrl = "https://developer.api.yodlee.com:443/ysl/restserver/v1/transactions";
             List<string> headers = new List<string>();
             headers.Add("Authorization:{cobSession= " + authTokens["cobSession"] + ",userSession=" + authTokens["userSession"] + "}");
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["container"] = "bank";
+            parameters["fromDate"] = "2013-01-01";
+            parameters["toDate"] = "2017-05-05";
             Logger.Log("Obtaining Transactions");
-            string jsonResponse = Web.httpGet(getAccountUrl, headers, parameters);
+            string jsonResponse = Web.httpGet(getTransactionsUrl, headers, parameters);
             if (jsonResponse == null)
             {
                 Logger.Log("Your session has timed out\n \r");
@@ -146,8 +147,8 @@ namespace SampleApiProj
 /* Assumptions made in this class with respect to inputs:
 cobrandLogin      = "sbCobphalageri"
 cobrandPassword   = "5e26696f-028d-41bd-9c0a-7ad3f6956702"
-loginName         = "sbMemphalageri1"
-password          = "sbMemphalageri1#123"
+loginName         = "sbMemphalageri2"
+password          = "sbMemphalageri2#123"
 appIds            = "10003600"
 container         = "bank"
 
