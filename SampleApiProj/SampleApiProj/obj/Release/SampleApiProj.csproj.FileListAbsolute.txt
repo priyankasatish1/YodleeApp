@@ -1,0 +1,7 @@
+C:\Users\priyankasatish10\Documents\Visual Studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Release\SampleApiProj.exe.config
+C:\Users\priyankasatish10\Documents\Visual Studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Release\SampleApiProj.exe
+C:\Users\priyankasatish10\Documents\Visual Studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Release\SampleApiProj.pdb
+C:\Users\priyankasatish10\Documents\Visual Studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Release\Newtonsoft.Json.dll
+C:\Users\priyankasatish10\Documents\Visual Studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Release\Newtonsoft.Json.xml
+C:\Users\priyankasatish10\Documents\Visual Studio 2015\Projects\SampleApiProj\SampleApiProj\obj\Release\SampleApiProj.exe
+C:\Users\priyankasatish10\Documents\Visual Studio 2015\Projects\SampleApiProj\SampleApiProj\obj\Release\SampleApiProj.pdb

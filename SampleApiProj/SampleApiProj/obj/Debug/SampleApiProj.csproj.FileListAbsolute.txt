@@ -1,0 +1,8 @@
+C:\Users\priyankasatish10\documents\visual studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Debug\SampleApiProj.exe.config
+C:\Users\priyankasatish10\documents\visual studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Debug\SampleApiProj.exe
+C:\Users\priyankasatish10\documents\visual studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Debug\SampleApiProj.pdb
+C:\Users\priyankasatish10\documents\visual studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Debug\Newtonsoft.Json.dll
+C:\Users\priyankasatish10\documents\visual studio 2015\Projects\SampleApiProj\SampleApiProj\bin\Debug\Newtonsoft.Json.xml
+C:\Users\priyankasatish10\documents\visual studio 2015\Projects\SampleApiProj\SampleApiProj\obj\Debug\SampleApiProj.csprojResolveAssemblyReference.cache
+C:\Users\priyankasatish10\documents\visual studio 2015\Projects\SampleApiProj\SampleApiProj\obj\Debug\SampleApiProj.exe
+C:\Users\priyankasatish10\documents\visual studio 2015\Projects\SampleApiProj\SampleApiProj\obj\Debug\SampleApiProj.pdb
